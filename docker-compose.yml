@@ -1,0 +1,38 @@
+version: '3'
+services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "~/Workspace/argon/data/redis:/data"
+#  mysql:
+#    image: mysql
+#    command: --default-authentication-plugin=mysql_native_password
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: example
+#    volumes:
+#      - "~/Workspace/argon/data/mysql:/var/lib/mysql"
+#    ports:
+#      - "3306:3306"
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - "~/Workspace/argon/data/mongodb-conf:/etc/mongo"
+      - "~/Workspace/argon/data/mongodb:/data/db"
+    ports:
+      - 27017:27017
+
+#  mongo-express:
+#    image: mongo-express
+#    restart: always
+#    ports:
+#      - 38081:8081
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: example
