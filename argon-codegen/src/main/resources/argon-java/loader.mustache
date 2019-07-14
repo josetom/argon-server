@@ -1,0 +1,14 @@
+package {{packageName}};
+{{#imports}}
+import {{import}};
+{{/imports}}
+import com.argon.web.v2.operations.OperationBase;
+import io.vertx.reactivex.ext.web.api.contract.openapi3.OpenAPI3RouterFactory;
+
+public class Loader {
+    public static void registerOperations(OpenAPI3RouterFactory routerFactory) {
+        {{#operations}}
+        routerFactory.addHandlerByOperationId("{{operationId}}", (rc) -> OperationBase.handle({{className}}.class, rc));
+        {{/operations}}
+    }
+}

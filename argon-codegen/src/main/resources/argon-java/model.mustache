@@ -1,0 +1,22 @@
+package {{package}};
+import com.google.gson.annotations.SerializedName;
+{{#imports}}
+import {{import}};
+{{/imports}}
+{{#models}}
+{{#model}}
+{{#description}}
+/**
+ * {{description}}
+ **/
+{{/description}}
+{{^description}}
+{{/description}}
+{{#isEnum}}
+{{>enumOuterClass}}
+{{/isEnum}}
+{{^isEnum}}
+{{>pojo}}
+{{/isEnum}}
+{{/model}}
+{{/models}}

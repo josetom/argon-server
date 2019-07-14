@@ -1,0 +1,18 @@
+public static class {{classname}} {
+    {{#vars}}
+    {{#isEnum}}
+    {{^isContainer}}
+        {{>enumClass}}
+    {{/isContainer}}
+    {{#isContainer}}
+    {{#mostInnerItems}}
+        {{>enumClass}}
+    {{/mostInnerItems}}
+    {{/isContainer}}
+    {{/isEnum}}
+        public {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{defaultValue}}};{{/defaultValue}}{{^defaultValue}};{{/defaultValue}}
+    {{/vars}}
+    {{#children}}
+       {{>innerPojo}}
+    {{/children}}
+    }

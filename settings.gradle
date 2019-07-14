@@ -1,2 +1,5 @@
 rootProject.name = 'argon'
-
+include 'argon-utils'
+include 'argon-db-model'
+include 'argon-codegen'
+include 'argon-core'

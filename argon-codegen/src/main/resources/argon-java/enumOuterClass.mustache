@@ -1,0 +1,20 @@
+public enum {{#datatypeWithEnum}}{{{.}}}{{/datatypeWithEnum}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}} {
+    {{#allowableValues}}{{#enumVars}}
+    @SerializedName({{{serializedValue}}})
+    {{{name}}}({{{value}}}){{^-last}},
+    {{/-last}}{{#-last}};{{/-last}}{{/enumVars}}{{/allowableValues}}
+
+    private {{{dataType}}} value;
+
+    {{#datatypeWithEnum}}{{{.}}}{{/datatypeWithEnum}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}}({{{dataType}}} value) {
+        this.value = value;
+    }
+
+    public {{{dataType}}} getValue() {
+        return value;
+    }
+
+    public String toString() {
+        return String.valueOf(value);
+    }
+}

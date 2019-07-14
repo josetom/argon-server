@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.flywaydb.flyway' version '5.2.4'
+}
+
+group 'com.argon'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.jooq', name: 'jooq', version: '3.11.11'
+    compile group: 'org.jooq', name: 'jooq-meta', version: '3.11.11'
+    compile group: 'org.jooq', name: 'jooq-codegen', version: '3.11.11'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.6.0'
+
+    //    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.47'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.6'
+    compile group: 'org.flywaydb', name: 'flyway-core', version: '5.2.4'
+
+    compile project(':argon-utils')
+    compile group: 'com.argon', name:'argon-utils', version: '0.0.1'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += 'src/main/generated'
+        }
+    }
+}
+
+task generateDbModels(type:JavaExec) {
+    main = 'com.argon.jooq.generator.ModelGenerator'
+    classpath = configurations.compile + configurations.compileOnly + files("${buildDir}/resources/main") + files("${buildDir}/classes/java/main")
+    doFirst {
+        delete "${project.projectDir}/src/main/generated"
+    }
+    doLast {
+
+    }
+}
+
+generateDbModels.dependsOn build
+generateDbModels.dependsOn flywayMigrate
+
+// gradle flywayMigrate
+flyway {
+    url = 'jdbc:postgresql://postgres-test.cqxnszoiexiy.us-east-1.rds.amazonaws.com:5432/argon'
+    user = 'postgres'
+    password = 'postgres'
+}

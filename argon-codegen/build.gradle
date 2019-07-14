@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'com.argon'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.openapitools', name: 'openapi-generator-gradle-plugin', version: '4.0.2'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task genOperationsModels(type:JavaExec) {
+    main = 'com.argon.codegen.ArgonGenerator'
+    classpath = configurations.compile + configurations.compileOnly + files("${buildDir}/resources/main") + files("${buildDir}/classes/java/main")
+    String resourceName = "spec.json";
+    String microServiceName = "spec";
+    String outputPath = "${project.projectDir}/codegen/generated";
+    String generatorName = "argon-java";
+    args += [microServiceName, resourceName, outputPath, generatorName]
+}
+genOperationsModels.dependsOn build

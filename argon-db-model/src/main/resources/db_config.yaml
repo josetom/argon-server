@@ -1,0 +1,12 @@
+argon.db.driver: org.postgresql.Driver
+argon.db.protocol: jdbc:postgresql
+argon.db.host: postgres-test.cqxnszoiexiy.us-east-1.rds.amazonaws.com
+argon.db.port: 5432
+argon.db.database: argon
+argon.db.username: postgres
+argon.db.password: postgres
+
+argon.db.schema_generator:
+- schema: argon_common
+  output_path: src/main/generated
+  package_name: com.argon.model

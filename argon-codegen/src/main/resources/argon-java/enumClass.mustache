@@ -1,0 +1,16 @@
+public enum {{{datatypeWithEnum}}} {
+        {{#allowableValues}}{{#enumVars}}
+        @SerializedName({{{serializedValue}}})
+        {{{name}}}({{{value}}}){{^-last}},
+        {{/-last}}{{#-last}};{{/-last}}{{/enumVars}}{{/allowableValues}}
+        {{^enumVars}}
+        ;
+        {{/enumVars}}
+        private String value;
+        {{{datatypeWithEnum}}}(String value) {
+            this.value = value;
+        }
+        public String toString() {
+            return value;
+        }
+    }

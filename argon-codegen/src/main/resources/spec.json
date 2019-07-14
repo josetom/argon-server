@@ -1,0 +1,33 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "API for customer details pages",
+    "description" : "Consists of all end points for customer details pages"
+  },
+  "servers" : [
+    {
+      "url___sd" : "{protocol}://{site}.argon.in:{port}/",
+      "url" : "{protocol}://www.argon.com:{port}/",
+      "variables" : {
+        "protocol" : {
+          "enum" : [ "http", "https" ],
+          "default" : "http"
+        },
+        "site" : {
+          "default" : "argon",
+          "description" : "Site name"
+        },
+        "port" : {
+          "enum" : [ "443", "8080" ],
+          "default" : "8080"
+        }
+      }
+    } ],
+  "paths" : {
+
+  },
+  "components" : {
+
+  }
+}

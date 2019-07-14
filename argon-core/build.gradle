@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.argon'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.vertx:vertx-core:3.7.0'
+    compile 'io.vertx:vertx-web:3.7.0'
+    compile 'io.vertx:vertx-codegen:3.7.0'
+    compile 'io.vertx:vertx-config:3.7.0'
+    compile 'io.vertx:vertx-config-yaml:3.7.0'
+    compile 'io.vertx:vertx-rx-java2:3.7.0'
+    compile 'io.vertx:vertx-mysql-postgresql-client:3.7.0'
+//    compile 'io.vertx:vertx-mongo-client:3.7.0'
+//    compile 'io.github.jklingsporn:vertx-jooq-rx-async:4.1.0'
+
+    compile 'org.apache.httpcomponents:httpcore:4.4.11'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+
+    compile project(':argon-db-model')
+    compile group: 'com.argon', name:'argon-db-model', version: '0.0.1'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
